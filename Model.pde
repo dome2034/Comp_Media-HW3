@@ -1,5 +1,5 @@
 class Model {
-  int l=65, r=-65;
+  int l=70, r=-70;
   void drawModel() {
     stroke(180);
     strokeWeight(4);
@@ -53,6 +53,16 @@ class Model {
     vertex(-50, 100, l);
     endShape(CLOSE);
 
+    beginShape();
+    fill(180);
+    vertex(-15, -20, l);
+    vertex(15, -20, l);
+    vertex(25, 0, l);
+    vertex(15, 20, l);
+    vertex(-15, 20, l);
+    vertex(-25, 0, l);
+    endShape(CLOSE);
+
     //WingR
     beginShape();
     fill(10);
@@ -102,43 +112,34 @@ class Model {
     vertex(-50, 100, r);
     endShape(CLOSE);
 
+    beginShape();
+    fill(180);
+    vertex(-15, -20, r);
+    vertex(15, -20, r);
+    vertex(25, 0, r);
+    vertex(15, 20, r);
+    vertex(-15, 20, r);
+    vertex(-25, 0, r);
+    endShape(CLOSE);
+
+    //Body
     noStroke();
     fill(180);
     sphere(40);
+    
+    //Window
+    translate(-10, 0 );
+    fill(30);
+    sphere(34);
+    
+    //Arms
+    fill(180);
+    translate(10, 0 );
+    box(20, 25, 140);
+    rotateZ(PI/4);
+    box(20, 25, 140);
+    rotateZ(PI/4);
+    box(20, 25, 140);
 
-    drawCylinder(6,18,18,130);
-  }
-
-  void drawCylinder( int sides, float r1, float r2, float h)
-  {
-    float angle = 360 / sides;
-    float halfHeight = h / 2;
-    // top
-    beginShape();
-    for (int i = 0; i < sides; i++) {
-      float x = cos( radians( i * angle ) ) * r1;
-      float y = sin( radians( i * angle ) ) * r1;
-      vertex( x, y, -halfHeight);
-    }
-    endShape(CLOSE);
-    // bottom
-    beginShape();
-    for (int i = 0; i < sides; i++) {
-      float x = cos( radians( i * angle ) ) * r2;
-      float y = sin( radians( i * angle ) ) * r2;
-      vertex( x, y, halfHeight);
-    }
-    endShape(CLOSE);
-    // draw body
-    beginShape(TRIANGLE_STRIP);
-    for (int i = 0; i < sides + 1; i++) {
-      float x1 = cos( radians( i * angle ) ) * r1;
-      float y1 = sin( radians( i * angle ) ) * r1;
-      float x2 = cos( radians( i * angle ) ) * r2;
-      float y2 = sin( radians( i * angle ) ) * r2;
-      vertex( x1, y1, -halfHeight);
-      vertex( x2, y2, halfHeight);
-    }
-    endShape(CLOSE);
   }
 }
